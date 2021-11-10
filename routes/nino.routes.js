@@ -1,9 +1,10 @@
 const router = require('express').Router();
+const ninoOperations = require('../operations/nino.operations');
 
 /*
 	Ruta base
 	-----------------------------------------
-	'/api/________'
+	'/api/ninos'
 
 	Puntos de conexión
 	-----------------------------------------
@@ -13,11 +14,10 @@ const router = require('express').Router();
 	modificar un dato: 			put('/:id',    operacion.metodo)
 	eliminar un dato: 			delete('/:id', operacion.metodo)
 */
-
-router.get();
-router.get();
-router.post();
-router.put();
-router.delete();
+router.get('/', ninoOperations.getNinos)
+router.get('/:id', ninoOperations.getNino)
+router.post('/', ninoOperations.crearNino)
+router.put('/:id', ninoOperations.actualizarNino)
+router.delete('/:id', ninoOperations.borrarNino)
 
 module.exports = router
