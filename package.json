@@ -1,5 +1,5 @@
 {
-  "name": "buencomienzodbserver",
+  "name": "BuenComienzoDBServer",
   "version": "1.0.0",
   "description": "REST API for BuenComienzoApp",
   "main": "index.js",
