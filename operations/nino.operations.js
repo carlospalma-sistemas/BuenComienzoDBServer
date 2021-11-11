@@ -32,6 +32,9 @@ ninoOperations.actualizarNino = async function(req, res) {
 	res.json({"status":"Dato de niño actualizado"});
 }
 
-ninoOperations.borrarNino = function(req, res) {}
+ninoOperations.borrarNino = async function(req, res) {
+	await coleccionNinos.findByIdAndRemove(req.params.id);
+	res.json({"status":"Dato de niño borrado"});	
+}
 
 module.exports = ninoOperations
