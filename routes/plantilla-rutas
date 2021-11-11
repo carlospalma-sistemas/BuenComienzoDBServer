@@ -18,6 +18,6 @@ router.get();
 router.get();
 router.post();
 router.put();
-router.get();
+router.delete();
 
 module.exports = router

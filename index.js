@@ -8,6 +8,9 @@ app.set('port', 3000)
 app.use(morgan('dev'))
 app.use(express.json())
 
+//Lista de rutas base
+
+
 //Arranque
 app.listen(app.get('port'), ()=> {
 	console.log("BuenComienzoDBServer iniciado")
