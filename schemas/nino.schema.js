@@ -1,5 +1,5 @@
 const mongoose = require ('mongoose');
-const Schema = mongoose;
+const { Schema } = mongoose;
 
 const NinoSchema = new Schema({
 	nombres : { type: String, required: true },
@@ -10,4 +10,4 @@ const NinoSchema = new Schema({
 	}, required: true },
 });
 
-module.exports = mongoose.model('ninos', NinoSchema);
+module.exports = mongoose.model('Nino', NinoSchema);

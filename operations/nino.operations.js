@@ -1,7 +1,9 @@
+const coleccionNinos = require('../schemas/nino.schema')	
 const ninoOperations = {};
 
-ninoOperations.getNinos = function(req, res) {
-	res.json({status:"Hola"})
+ninoOperations.getNinos = async function(req, res) {
+	const ninos = await coleccionNinos.find();
+	res.json(ninos);
 }
 ninoOperations.getNino = function(req, res) {}
 ninoOperations.crearNino = function(req, res) {}
