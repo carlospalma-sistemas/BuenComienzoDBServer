@@ -2,11 +2,15 @@ const router = require('express').Router();
 const ninoOperations = require('../operations/nino.operations');
 
 /*
+	Archivo de operaciones
+	-----------------------------------------
+	const operacion = require('archivo de operaciones');
+
 	Ruta base
 	-----------------------------------------
 	'/api/ninos'
 
-	Puntos de conexión
+	Puntos de conexión (endpoints)
 	-----------------------------------------
 	crear un dato: 				post('/',      operacion.metodo)
 	obtener todos los datos: 	get('/',       operacion.metodo)
