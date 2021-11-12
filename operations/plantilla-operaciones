@@ -1,4 +1,4 @@
-const coleccion = require('<ARCHIVO DE OPERACIONES>');
+const coleccion = require('<ARCHIVO DE ESQUEMA>');
 const operaciones = {};
 
 operaciones.get___ = async function(req, res) {}
