@@ -1,40 +1,87 @@
 const coleccionNinos = require('../schemas/nino.schema')	
 const ninoOperations = {};
 
+
 ninoOperations.getNinos = async function(req, res) {
-	const ninos = await coleccionNinos.find();
-	res.json(ninos);
+	try {
+		const ninos = await coleccionNinos.find()
+		res.status(200).json(ninos)
+	}
+	catch(err) {
+		res.status(404).json({message: err.message})
+	}
 }
+
 
 ninoOperations.getNino = async function(req, res) {
-	const nino = await coleccionNinos.findById(req.params.id);
-	res.json(nino);
+	try {
+		const nino = await coleccionNinos.findById(req.params.id);
+		if (nino==null) {
+			res.status(404).json({message: "Not found"})	
+		}
+		else {
+			res.status(200).json(nino)
+		}
+	}
+	catch(err) {
+		res.status(400).json({message: err.message})	
+	}
 }
+
 
 ninoOperations.crearNino = async function(req, res) {
-	const nino = new coleccionNinos(req.body);
-	await nino.save();
-	res.json({"status":"Dato de niño guardado"});
+	try{
+		const nino = new coleccionNinos(req.body);
+		await nino.save()
+		res.status(201).json(nino)
+	}
+	catch(err) {
+		res.status(400).json({message: err.message})
+	}
 }
+
 
 ninoOperations.actualizarNino = async function(req, res) {
-	const { id } = req.params;
-	const nino = {
-		nombres: req.body.nombres,
-    	apellidos: req.body.apellidos,
-    	documento:{
-        	tipo: req.body.documento.tipo,
-        	numero: req.body.documento.numero
-    	}
+	try {
+		const { id } = req.params;
+		const nino = {
+			nombres: req.body.nombres,
+	    	apellidos: req.body.apellidos,
+	    	identificacion:{
+	    		tipo: req.body.identificacion.tipo,
+	        	numero: req.body.identificacion.numero,
+	        	expedicion:{
+	        		municipio: req.body.identificacion.expedicion.municipio,
+	        		departamento: req.body.identificacion.expedicion.departamento
+	        	}
+	    	},
+	    	nacimiento: {
+				fecha: req.body.nacimiento.fecha,
+				lugar: {
+					municipio: req.body.nacimiento.lugar.municipio,
+					departamento: req.body.nacimiento.lugar.departamento
+				},
+			},
+			genero: req.body.genero,
+			gruposanguineo: req.body.gruposanguineo	
+		}
+		await coleccionNinos.findByIdAndUpdate(req.params.id, {$set: nino}, {new: true});
+		res.status(200).json(nino);
 	}
-	console.log(nino)
-	await coleccionNinos.findByIdAndUpdate(req.params.id, {$set: nino}, {new: true});
-	res.json({"status":"Dato de niño actualizado"});
+	catch(err) {
+		res.status(400).json({message: err.message})
+	}
 }
 
+
 ninoOperations.borrarNino = async function(req, res) {
-	await coleccionNinos.findByIdAndRemove(req.params.id);
-	res.json({"status":"Dato de niño borrado"});	
+	try {
+		await coleccionNinos.findByIdAndRemove(req.params.id);
+		res.status(200).json({message: "Delete OK"});	
+	}
+	catch(err) {
+		res.status(404).json({message: err.message})	
+	}
 }
 
 module.exports = ninoOperations
