@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const database = "BuenComienzo";
 const password = "admin";
-const URI = 'mongodb+srv://admin:'+password+'@cluster0.k6bim.mongodb.net/'+database+'?retryWrites=true&w=majority';
+const URI = 'mongodb+srv://admin:'+password+'@cluster0.9ckog.mongodb.net/'+database+'?retryWrites=true&w=majority';
 
 mongoose.connect(URI)
 	.then(db => console.log("Atlas en linea"))

@@ -4,13 +4,15 @@
   "description": "REST API for BuenComienzoApp",
   "main": "index.js",
   "scripts": {
-    "dbserver": "nodemon index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Carlos Palma",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^6.0.12",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.7",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
